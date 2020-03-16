@@ -1,3 +1,4 @@
+//not used
 #include <Wire.h>
 #include "Adafruit_DRV2605.h"
 
