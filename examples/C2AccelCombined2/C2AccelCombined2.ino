@@ -46,25 +46,29 @@ void setup() {
 
 }
 
-//TODO: EXPLAIN WHAT METHOD DOES
+//runs continuously
 void loop() {
     yAxis=sensorinterface.getYAccelerometerCounts();
     //Prints raw values from the sensor to the monitor.
     Serial.print(yAxis);
     Serial.print("\t");
+    //pulses left tactor if device is tilted left
     if(yAxis>baseThreshold){
       Serial.println("LEFT"); 
       pulseLeftTactor(50);
       pulseRightTactor(0);
+    //pulses right tactor if devices is tilted right
     }else if (yAxis<baseThreshold*-1){
       Serial.println("RIGHT"); 
       pulseLeftTactor(0);
       pulseRightTactor(50);
+    //turns both tactors off if device is relatively flat
     }else{
       Serial.println("FLAT");  
       pulseLeftTactor(0);
       pulseRightTactor(0);
     }
+    //wait one second
     delay(100);
 }
 
